@@ -31,9 +31,9 @@
       </ion-segment>
 
       <div id="wrapper" class="signin-wrapper">
-        <input id="email" placeholder="Email" type="text">
+        <input id="email" placeholder="Email" type="email" required [(ngModel)]="signInUser.login">
         <div class="inputPassword">
-         <input id="pass" placeholder="Contraseña" [type]="passwordType">
+         <input id="pass" placeholder="Contraseña" [type]="passwordType" [(ngModel)]="signInUser.password">
          <button class="button-show-password" clear item-right (click)="showHidePassword()">
            <ion-icon id="showPass" class="icon-show-password" [name]="passwordIcon"></ion-icon>
          </button>
@@ -41,7 +41,7 @@
         <input id="name" for-signup placeholder="Nombre" type="text" class="disabled-input">
         <input id="last_name" for-signup placeholder="Apellido" type="text" class="disabled-input">
       </div>
-      <ion-button id="buttonSubmit" expand="block">Iniciar</ion-button>
+      <ion-button id="buttonSubmit" expand="block" (click)="onSignInSubmit()">Iniciar</ion-button>
     </ion-card-content>
     <ion-card-header>
       <div id="hint">Haga click en las pestañas</div>

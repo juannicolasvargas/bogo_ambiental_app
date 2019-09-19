@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { AngularTokenService } from "angular-token";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,8 +11,16 @@ export class LoginComponent implements OnInit {
 
   passwordIcon: string = 'eye';
   passwordType: string = 'password';
+  signInUser = { login: '', password: '' }
 
-  constructor() { }
+  constructor(private tokenService: AngularTokenService, private router: Router) { }
+
+  onSignInSubmit() {
+    this.tokenService.signIn(this.signInUser).subscribe(
+      res => { this.router.navigateByUrl('/home'); },
+      error => error
+    );
+  }
 
   segmentAuthChanged(ev: any) {
     ev.detail.value == 'signin' ? this.formForLogin() : this.formForSignUp();
@@ -40,6 +50,17 @@ export class LoginComponent implements OnInit {
     this.passwordIcon = this.passwordIcon === 'eye' ? 'eye-off' : 'eye';
     this.passwordType = this.passwordType === 'text' ? 'password' : 'text';
   }
+  
+  //For test
+  // eventClickSubmit() {
+  //   if (this.tokenService.userSignedIn() == true) {
+  //   console.log('logueado');
+  //   this.tokenService.signOut().subscribe(
+  //     res =>      console.log(res),
+  //     error =>    console.log(error)
+  //   );
+  //   }
+  // }
 
   ngOnInit() {
   }
