@@ -1,35 +1,47 @@
+<ion-header translucent>
+  <ion-toolbar>
+  <ion-buttons slot="secondary">
+    <ion-button>
+      <ion-icon slot="icon-only" name="logo-ionic"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+  <ion-title>Ingresar</ion-title>
+  <ion-buttons slot="primary">
+    <ion-button>
+      <ion-icon slot="icon-only" name="star"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content>
   <ion-card>
+    <img src="./assets/aves-bogota-humedales.jpg" />
     <ion-card-header>
       <ion-card-title>Humedales de Bogotá</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <input checked=true id="signin" name="action" type="radio" value="signin">
-      <label for="signin">Iniciar sesión</label>
-      <input id="signup" name="action" type="radio" value="signup">
-      <label for="signup">Registrarse</label>
-      <input id="reset" name="action" type="radio" value="reset">
-      <label for="reset">Reset</label>
-      <div id="wrapper">
-        <div id="arrow"></div>
-        <input id="email" placeholder="Email" type="text">
-        <input id="pass" placeholder="Contraseña" type="password">
-        <input id="repass" placeholder="Confirmar contraseña" type="password">
-        <input id="name" placeholder="Nombre" type="text">
-        <input id="last_name" placeholder="Apellido" type="text">
-        <input id="address" placeholder="Dirección" type="text">
-        <input id="cellphonenumber" placeholder="Numero celular" type="number">
+      <ion-segment (ionChange)="segmentAuthChanged($event)" class="margin-segment">
+        <ion-segment-button id="signin" value="signin" class="signin" checked>
+          <ion-label>Iniciar sesión</ion-label>
+        </ion-segment-button>
+        <ion-segment-button id="signup" value="signup" class="signup">
+          <ion-label>Registrarse</ion-label>
+        </ion-segment-button>
+      </ion-segment>
 
+      <div id="wrapper" class="signin-wrapper">
+        <input id="email" placeholder="Email" type="text">
+        <div class="inputPassword">
+         <input id="pass" placeholder="Contraseña" [type]="passwordType">
+         <button class="button-show-password" clear item-right (click)="showHidePassword()">
+           <ion-icon id="showPass" class="icon-show-password" [name]="passwordIcon"></ion-icon>
+         </button>
+        </div>
+        <input id="name" for-signup placeholder="Nombre" type="text" class="disabled-input">
+        <input id="last_name" for-signup placeholder="Apellido" type="text" class="disabled-input">
       </div>
-      <button type="submit">
-        <span>
-          Recuperar contraseña
-          <br/>
-          Iniciar
-          <br/>
-          Registrarse
-        </span>
-      </button>
+      <ion-button id="buttonSubmit" expand="block">Iniciar</ion-button>
     </ion-card-content>
     <ion-card-header>
       <div id="hint">Haga click en las pestañas</div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-login',
@@ -7,8 +7,41 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
+  passwordIcon: string = 'eye';
+  passwordType: string = 'password';
+
   constructor() { }
 
-  ngOnInit() {}
+  segmentAuthChanged(ev: any) {
+    ev.detail.value == 'signin' ? this.formForLogin() : this.formForSignUp();
+  }
+
+   formForLogin() {
+     let signInElements = document.querySelectorAll(`input[for-signup]`);
+     this.getWrapperElement().classList.add('signin-wrapper');
+     this.getWrapperElement().classList.remove('signup-wrapper');
+     signInElements.forEach(element => { element.classList.add('disabled-input') });
+     this.getSubmitElement().innerHTML = 'Iniciar';
+  }
+
+  formForSignUp() {
+    let signUpElements = document.querySelectorAll(".disabled-input");
+    signUpElements.forEach(element => { element.classList.remove('disabled-input') });
+    this.getWrapperElement().classList.add('signup-wrapper');
+    this.getWrapperElement().classList.remove('signin-wrapper');
+    this.getSubmitElement().innerHTML = 'Registrarse';
+  }
+
+  getWrapperElement() { return document.querySelector("#wrapper") }
+
+  getSubmitElement() { return document.querySelector("#buttonSubmit") }
+
+  showHidePassword() {
+    this.passwordIcon = this.passwordIcon === 'eye' ? 'eye-off' : 'eye';
+    this.passwordType = this.passwordType === 'text' ? 'password' : 'text';
+  }
+
+  ngOnInit() {
+  }
 
 }
