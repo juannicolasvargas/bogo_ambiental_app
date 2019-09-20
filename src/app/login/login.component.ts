@@ -11,14 +11,33 @@ export class LoginComponent implements OnInit {
 
   passwordIcon: string = 'eye';
   passwordType: string = 'password';
-  signInUser = { login: '', password: '' }
+  signInUser: JSON = { login: '', password: '' }
+  signUpUser: JSON = { passwordConfirmation: '', name: '', last_name: ''}
 
   constructor(private tokenService: AngularTokenService, private router: Router) { }
 
-  onSignInSubmit() {
+  onSubmitBtn() {
+    if (this.getSubmitElement().getAttribute("credentials") === "signIn") {
+      this.onSignIn();
+    }
+    else {
+      this.onSignUp();
+    }
+  }
+
+  onSignIn() {
     this.tokenService.signIn(this.signInUser).subscribe(
-      res => { this.router.navigateByUrl('/home'); },
+      res => { this.router.navigateByUrl('/dashboard'); },
       error => error
+    );
+  }
+
+  onSignUp() {
+    this.signUpUser.passwordConfirmation = this.signInUser.password;
+    let payload = Object.assign(this.signInUser, this.signUpUser);
+    this.tokenService.registerAccount(payload).subscribe(
+      res => { this.router.navigateByUrl('/dashboard'); },
+      error => console.log(error)
     );
   }
 
@@ -32,6 +51,7 @@ export class LoginComponent implements OnInit {
      this.getWrapperElement().classList.remove('signup-wrapper');
      signInElements.forEach(element => { element.classList.add('disabled-input') });
      this.getSubmitElement().innerHTML = 'Iniciar';
+     this.getSubmitElement().setAttribute("credentials", "signIn");
   }
 
   formForSignUp() {
@@ -40,6 +60,7 @@ export class LoginComponent implements OnInit {
     this.getWrapperElement().classList.add('signup-wrapper');
     this.getWrapperElement().classList.remove('signin-wrapper');
     this.getSubmitElement().innerHTML = 'Registrarse';
+    this.getSubmitElement().setAttribute("credentials", "signUp");
   }
 
   getWrapperElement() { return document.querySelector("#wrapper") }
@@ -50,7 +71,7 @@ export class LoginComponent implements OnInit {
     this.passwordIcon = this.passwordIcon === 'eye' ? 'eye-off' : 'eye';
     this.passwordType = this.passwordType === 'text' ? 'password' : 'text';
   }
-  
+
   //For test
   // eventClickSubmit() {
   //   if (this.tokenService.userSignedIn() == true) {

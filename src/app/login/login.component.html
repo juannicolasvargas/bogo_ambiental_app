@@ -21,7 +21,7 @@
       <ion-card-title>Humedales de Bogotá</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <ion-segment (ionChange)="segmentAuthChanged($event)" class="margin-segment">
+      <ion-segment id="credentialsType" (ionChange)="segmentAuthChanged($event)" class="margin-segment">
         <ion-segment-button id="signin" value="signin" class="signin" checked>
           <ion-label>Iniciar sesión</ion-label>
         </ion-segment-button>
@@ -38,10 +38,10 @@
            <ion-icon id="showPass" class="icon-show-password" [name]="passwordIcon"></ion-icon>
          </button>
         </div>
-        <input id="name" for-signup placeholder="Nombre" type="text" class="disabled-input">
-        <input id="last_name" for-signup placeholder="Apellido" type="text" class="disabled-input">
+        <input id="name" for-signup placeholder="Nombre" type="text" class="disabled-input" [(ngModel)]="signUpUser.name">
+        <input id="last_name" for-signup placeholder="Apellido" type="text" class="disabled-input" [(ngModel)]="signUpUser.last_name">
       </div>
-      <ion-button id="buttonSubmit" expand="block" (click)="onSignInSubmit()">Iniciar</ion-button>
+      <ion-button id="buttonSubmit" expand="block" (click)="onSubmitBtn()" credentials="signIn">Iniciar</ion-button>
     </ion-card-content>
     <ion-card-header>
       <div id="hint">Haga click en las pestañas</div>
