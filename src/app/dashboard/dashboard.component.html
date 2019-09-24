@@ -1,17 +1,75 @@
-<ion-header>
+
+  <!-- <label>{{ user.email }}</label> -->
+
+<ion-header translucent>
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>
-      Inicio
-    </ion-title>
+    <ion-title>Dashboard</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-    <label for="">{{ user.email }}</label>
+<ion-content fullscreen class="ion-padding" overflow-scroll="true">
+  <div class="content-user">
+    <ion-icon class="img-user" name="logo-tux"></ion-icon>
+  </div>
+  <ion-list>
+    <ion-item-sliding>
+      <ion-item>
+        <ion-label>#SelfieBogoAmbiental</ion-label>
+        <ion-note slot="end">
+          <ion-icon name="camera"></ion-icon>
+        </ion-note>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Humedal más cercano</ion-label>
+        <ion-note slot="end">
+          <ion-icon name="map"></ion-icon>
+        </ion-note>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Investigaciones</ion-label>
+        <ion-note slot="end">
+          <ion-icon name="document"></ion-icon>
+        </ion-note>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Humedales de Bogotá</ion-label>
+        <ion-note slot="end">
+          <ion-icon name="partly-sunny"></ion-icon>
+        </ion-note>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Conoce tu ambiente</ion-label>
+        <ion-note slot="end">
+          <ion-icon name="book"></ion-icon>
+        </ion-note>
+      </ion-item>
+
+    </ion-item-sliding>
+  </ion-list>
 </ion-content>
-<p>
-  dashboard works!
-</p>
+
+<ion-tabs>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="games">
+      <ion-icon name="logo-game-controller-b"></ion-icon>
+      <ion-label>Juegos</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="retos">
+      <ion-icon name="ribbon"></ion-icon>
+      <ion-label>Retos</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="test">
+      <ion-icon name="school"></ion-icon>
+      <ion-label>test</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
