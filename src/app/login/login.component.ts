@@ -11,10 +11,13 @@ export class LoginComponent implements OnInit {
 
   passwordIcon: string = 'eye';
   passwordType: string = 'password';
-  signInUser = { login: '', password: '' }
-  signUpUser = { passwordConfirmation: '', name: '', last_name: ''}
+  public signInUser;
+  public signUpUser;
 
-  constructor(private tokenService: AngularTokenService, private router: Router) { }
+  constructor(private tokenService: AngularTokenService, private router: Router) {
+    this.signInUser = { login: '', password: '' };
+    this.signUpUser = { passwordConfirmation: '', name: '', last_name: '' };
+  }
 
   onSubmitBtn() {
     if (this.getSubmitElement().getAttribute("credentials") === "signIn") {
@@ -37,9 +40,13 @@ export class LoginComponent implements OnInit {
 
   onSignUp() {
     this.signUpUser.passwordConfirmation = this.signInUser.password;
-    let payload = Object.assign(this.signInUser, this.signUpUser);
+    const payload = Object.assign(this.signInUser, this.signUpUser);
     this.tokenService.registerAccount(payload).subscribe(
-      res => { this.router.navigateByUrl('/dashboard'); },
+      res => {
+        console.log(res.data);
+        localStorage.setItem("user", JSON.stringify(res.data));
+        this.router.navigateByUrl('/dashboard');
+      },
       error => console.log(error)
     );
   }

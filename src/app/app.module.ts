@@ -24,7 +24,7 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule,
     FormsModule,
     AngularTokenModule.forRoot({
-      apiBase: 'http://localhost:3000',
+      apiBase: 'https://bogo-ambiental-api.herokuapp.com',
       apiPath: 'api/v1'
     }),
     IonicModule.forRoot(),
