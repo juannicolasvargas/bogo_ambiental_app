@@ -32,7 +32,7 @@ label[for="signin"] { margin-right: 20px; }
 label[for="reset"] { float: right; }
 input[type=radio]:checked + label { opacity: 1; }
 
-input[type=number],
+input[type=email],
 input[type=text],
 input[type=password] {
   background: #fff;

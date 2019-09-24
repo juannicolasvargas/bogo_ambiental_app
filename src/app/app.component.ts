@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { AngularTokenService } from "angular-token";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -27,10 +29,26 @@ export class AppComponent {
     }
   ];
 
+  signOutSubmint() {
+    this.tokenService.signOut().subscribe(
+      res => {
+        localStorage.removeItem("user");
+        this.router.navigateByUrl('/login');
+      },
+      error => console.log(error)
+    );
+  }
+
+  userSignedInSession()  :boolean{
+    return this.tokenService.userSignedIn() == true;
+  }
+
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    private tokenService: AngularTokenService,
+    private router: Router
   ) {
     this.initializeApp();
   }
