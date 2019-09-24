@@ -43,7 +43,8 @@ export class LoginComponent implements OnInit {
     const payload = Object.assign(this.signInUser, this.signUpUser);
     this.tokenService.registerAccount(payload).subscribe(
       res => {
-        localStorage.setItem("user", JSON.stringify(res.body.data));
+        console.log(res.data);
+        localStorage.setItem("user", JSON.stringify(res.data));
         this.router.navigateByUrl('/dashboard');
       },
       error => console.log(error)
