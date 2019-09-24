@@ -31,12 +31,15 @@ export class AppComponent {
 
   signOutSubmint() {
     this.tokenService.signOut().subscribe(
-      res => { this.router.navigateByUrl('/login'); },
+      res => {
+        localStorage.removeItem("user");
+        this.router.navigateByUrl('/login');
+      },
       error => console.log(error)
     );
   }
 
-  userSignedInSession() {
+  userSignedInSession()  :boolean{
     return this.tokenService.userSignedIn() == true;
   }
 

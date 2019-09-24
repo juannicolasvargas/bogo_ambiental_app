@@ -11,8 +11,8 @@ export class LoginComponent implements OnInit {
 
   passwordIcon: string = 'eye';
   passwordType: string = 'password';
-  signInUser: JSON = { login: '', password: '' }
-  signUpUser: JSON = { passwordConfirmation: '', name: '', last_name: ''}
+  signInUser = { login: '', password: '' }
+  signUpUser = { passwordConfirmation: '', name: '', last_name: ''}
 
   constructor(private tokenService: AngularTokenService, private router: Router) { }
 
@@ -27,7 +27,10 @@ export class LoginComponent implements OnInit {
 
   onSignIn() {
     this.tokenService.signIn(this.signInUser).subscribe(
-      res => { this.router.navigateByUrl('/dashboard'); },
+      res => {
+        localStorage.setItem("user", JSON.stringify(res.body.data));
+        this.router.navigateByUrl('/dashboard');
+      },
       error => error
     );
   }
@@ -71,17 +74,6 @@ export class LoginComponent implements OnInit {
     this.passwordIcon = this.passwordIcon === 'eye' ? 'eye-off' : 'eye';
     this.passwordType = this.passwordType === 'text' ? 'password' : 'text';
   }
-
-  //For test
-  // eventClickSubmit() {
-  //   if (this.tokenService.userSignedIn() == true) {
-  //   console.log('logueado');
-  //   this.tokenService.signOut().subscribe(
-  //     res =>      console.log(res),
-  //     error =>    console.log(error)
-  //   );
-  //   }
-  // }
 
   ngOnInit() {
   }
