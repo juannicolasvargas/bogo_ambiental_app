@@ -1,6 +1,3 @@
-
-  <!-- <label>{{ user.email }}</label> -->
-
 <ion-header translucent>
   <ion-toolbar>
     <ion-buttons slot="start">
@@ -12,7 +9,7 @@
 
 <ion-content fullscreen class="ion-padding" overflow-scroll="true">
   <div class="content-user">
-    <ion-icon class="img-user" name="logo-tux"></ion-icon>
+    <img id="img-user" [src]="selectUserImage()" alt="image user" class="img-user" (click)= "selectImage()">
   </div>
   <ion-list>
     <ion-item-sliding>
@@ -55,7 +52,7 @@
   </ion-list>
 </ion-content>
 
-<ion-tabs>
+<!-- <ion-tabs>
   <ion-tab-bar slot="bottom">
     <ion-tab-button tab="games">
       <ion-icon name="logo-game-controller-b"></ion-icon>
@@ -72,4 +69,4 @@
       <ion-label>test</ion-label>
     </ion-tab-button>
   </ion-tab-bar>
-</ion-tabs>
+</ion-tabs> -->

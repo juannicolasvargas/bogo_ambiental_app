@@ -1,5 +1,7 @@
 {
   "name": "bogo_ambiental_app",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

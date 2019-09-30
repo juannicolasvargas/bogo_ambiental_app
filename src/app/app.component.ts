@@ -12,22 +12,6 @@ import { Router } from '@angular/router';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
-  public appPages = [
-    {
-      title: 'Home',
-      url: '/home',
-      icon: 'home'
-    },
-    {
-      title: 'List',
-      url: '/list',
-      icon: 'list'
-    },
-    {
-      title: 'login',
-      url: '/login'
-    }
-  ];
 
   signOutSubmint() {
     this.tokenService.signOut().subscribe(
@@ -39,7 +23,7 @@ export class AppComponent {
     );
   }
 
-  userSignedInSession()  :boolean{
+  userSignedInSession(): boolean {
     return this.tokenService.userSignedIn() == true;
   }
 
@@ -50,6 +34,12 @@ export class AppComponent {
     private tokenService: AngularTokenService,
     private router: Router
   ) {
+    console.log(this.userSignedInSession());
+    if(this.userSignedInSession()) {
+      router.navigateByUrl('/dashboard');
+    }else {
+      router.navigateByUrl('/login');
+    }
     this.initializeApp();
   }
 

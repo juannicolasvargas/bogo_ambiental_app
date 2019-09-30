@@ -7,21 +7,8 @@ import { AngularTokenService } from "angular-token";
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    component: LoginComponent,
     pathMatch: 'full'
-  },
-  {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
-  },
-  {
-    path: 'list',
-    loadChildren: () => import('./list/list.module').then(m => m.ListPageModule),
-    canActivate: [AngularTokenService]
-  },
-  {
-    path: 'login',
-    component: LoginComponent
   },
   {
     path: 'dashboard',

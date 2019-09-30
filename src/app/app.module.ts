@@ -11,10 +11,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { HttpModule } from '@angular/http';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { AngularTokenService, AngularTokenModule, AngularTokenOptions } from 'angular-token';
 import { FormsModule } from '@angular/forms';
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent, DashboardComponent],
@@ -24,7 +24,8 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule,
     FormsModule,
     AngularTokenModule.forRoot({
-      apiBase: 'https://bogo-ambiental-api.herokuapp.com',
+      // apiBase: 'https://bogo-ambiental-api.herokuapp.com',
+      apiBase: 'http://localhost:3000',
       apiPath: 'api/v1'
     }),
     IonicModule.forRoot(),
@@ -35,6 +36,7 @@ import { FormsModule } from '@angular/forms';
     StatusBar,
     HttpClientModule,
     AngularTokenModule,
+    Camera,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
